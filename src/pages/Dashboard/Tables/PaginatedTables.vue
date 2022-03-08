@@ -49,7 +49,7 @@
                 :min-width="120"
                 fixed="right"
                 label="Actions">
-                <template slot-scope="props">
+                <template v-slot="props">
                   <a v-tooltip.top-center="'Like'" class="btn-info btn-simple btn-link"
                      @click="handleLike(props.$index, props.row)">
                     <i class="fa fa-heart"></i></a>

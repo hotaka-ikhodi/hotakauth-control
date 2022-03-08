@@ -5,6 +5,10 @@ import NotFound from 'src/pages/GeneralViews/NotFoundPage.vue'
 import Overview from 'src/pages/Dashboard/Dashboard/Overview.vue'
 import Stats from 'src/pages/Dashboard/Dashboard/Stats.vue'
 
+// Usuarios page
+import ListaUsuarios from 'src/pages/Views/ListaUsuarios.vue'
+
+
 // Pages
 import User from 'src/pages/Dashboard/Pages/UserProfile.vue'
 import TimeLine from 'src/pages/Dashboard/Pages/TimeLinePage.vue'
@@ -82,6 +86,18 @@ let componentsMenu = {
       component: Typography
     }
 
+  ]
+}
+let usuarios = {
+  path: '/usuarios',
+  component: DashboardLayout,
+  redirect: '/usuarios/listado',
+  children: [
+    {
+      path: 'listado',
+      name: 'Listado Usuarios',
+      component: ListaUsuarios
+    },
   ]
 }
 let formsMenu = {
@@ -198,6 +214,7 @@ const routes = [
     path: '/',
     redirect: '/login'
   },
+  usuarios,
   componentsMenu,
   formsMenu,
   tablesMenu,

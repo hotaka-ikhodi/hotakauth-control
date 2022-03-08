@@ -4,8 +4,10 @@
     <side-bar>
       <user-menu></user-menu>
       <mobile-menu></mobile-menu>
-      <template slot="links">
+      <template v-slot:links>
         <sidebar-item :link="{name: 'Dashboard', icon: 'nc-icon nc-chart-pie-35', path: '/admin/overview'}">
+        </sidebar-item>
+        <sidebar-item :link="{name: 'Usuarios', icon: 'nc-icon nc-single-02', path: '/usuarios'}">
         </sidebar-item>
         <sidebar-item :link="{name: 'Components', icon: 'nc-icon nc-app'}">
           <sidebar-item :link="{name: 'Buttons', path: '/components/buttons'}"></sidebar-item>
@@ -45,7 +47,7 @@
     <div class="main-panel">
       <top-navbar></top-navbar>
 
-      <dashboard-content @click.native="toggleSidebar">
+      <dashboard-content @click="toggleSidebar">
 
       </dashboard-content>
 
