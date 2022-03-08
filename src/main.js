@@ -21,9 +21,14 @@ import App from './App.vue'
 
 // router setup
 import routes from './routes/routes'
+import store from './store';
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
+
+const app = Vue(App);
+app.use(store);
 
 // configure router
 const router = new VueRouter({

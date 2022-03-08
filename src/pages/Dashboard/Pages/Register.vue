@@ -87,7 +87,7 @@
         document.body.classList.remove('off-canvas-sidebar')
       }
     },
-    beforeDestroy () {
+    beforeUnmount () {
       this.closeMenu()
     }
   }
