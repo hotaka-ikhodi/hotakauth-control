@@ -95,7 +95,7 @@
           </div>
           <el-dialog
             title="Basic Modal"
-            :visible.sync="modals.basic">
+            :visible="modals.basic">
             <span>This is a message</span>
             <span slot="footer" class="dialog-footer">
               <button class="btn btn-danger" @click="closeModal('basic')">Cancel</button>&nbsp;
@@ -114,7 +114,7 @@
           <el-dialog
             center
             title="Centered Content"
-            :visible.sync="modals.centered">
+            :visible="modals.centered">
             <span>It should be noted that the content will not be aligned in center by default</span>
             <span slot="footer" class="dialog-footer">
               <button class="btn btn-danger" @click="closeModal('centered')">Cancel</button>&nbsp;
@@ -133,7 +133,7 @@
           <el-dialog
             center
             title="Custom Content"
-            :visible.sync="modals.custom">
+            :visible="modals.custom">
             <el-table :data="gridData">
               <el-table-column min-width="100" property="date" label="Date"></el-table-column>
               <el-table-column min-width="100" property="name" label="Name"></el-table-column>
@@ -152,7 +152,7 @@
             center
             :before-close="handleClose"
             title="Confirm upon closing"
-            :visible.sync="modals.confirm">
+            :visible="modals.confirm">
             <span>It should be noted that the content will not be aligned in center by default</span>
             <span slot="footer" class="dialog-footer">
               <button class="btn btn-danger" @click="closeModal('confirm')">Cancel</button>&nbsp;
@@ -214,7 +214,9 @@
         try {
           await this.$confirm('Are you sure you want to close this dialog?')
           done()
-        } catch (e) {}
+        } catch (e) {
+          console.log(e)
+        }
       },
       showSwal (type) {
         if (type === 'basic') {

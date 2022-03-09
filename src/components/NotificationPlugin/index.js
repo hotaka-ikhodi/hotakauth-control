@@ -45,8 +45,10 @@ const NotificationStore = {
 const NotificationsPlugin = {
   install(Vue, options) {
     let app = new Vue({
-      data: {
-        notificationStore: NotificationStore
+      data() {
+        return {
+          notificationStore: NotificationStore
+        }
       },
       methods: {
         notify(notification) {
