@@ -1550,11 +1550,6 @@
   optionalDependencies:
     "prettier" "^1.18.2 || ^2.0.0"
 
-"@vue/devtools-api@^6.0.0-beta.11":
-  "integrity" "sha512-iO/4FIezHKXhiDBdKySCvJVh8/mZPxHpiQrTy+PXVqJZgpTPTdHy4q8GXulaY+UKEagdkBb0onxNQZ0LNiqVhw=="
-  "resolved" "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.0.12.tgz"
-  "version" "6.0.12"
-
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   "integrity" "sha512-GwSkxPrihfLR69/dSV3+5CdMQ0D+jXg8Ma1S4nQXKJAznYFX14vHdc/NetQc34Dw+rBbIJyP7JOuVb9Fhprvog=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-15.9.8.tgz"
@@ -1954,12 +1949,12 @@
     "picocolors" "^1.0.0"
     "postcss-value-parser" "^4.2.0"
 
-"axios@^0.26.0", "axios@>= 0.20.0":
-  "integrity" "sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og=="
-  "resolved" "https://registry.npmjs.org/axios/-/axios-0.26.0.tgz"
-  "version" "0.26.0"
+"axios@^0.24.0":
+  "integrity" "sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.24.0.tgz"
+  "version" "0.24.0"
   dependencies:
-    "follow-redirects" "^1.14.8"
+    "follow-redirects" "^1.14.4"
 
 "babel-helper-vue-jsx-merge-props@^2.0.0":
   "integrity" "sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg=="
@@ -3725,7 +3720,7 @@
   "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.2.5.tgz"
   "version" "3.2.5"
 
-"follow-redirects@^1.0.0", "follow-redirects@^1.14.8":
+"follow-redirects@^1.0.0", "follow-redirects@^1.14.4":
   "integrity" "sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz"
   "version" "1.14.9"
@@ -6696,11 +6691,6 @@
   "resolved" "https://registry.npmjs.org/vlq/-/vlq-0.2.3.tgz"
   "version" "0.2.3"
 
-"vue-axios@^3.4.1":
-  "integrity" "sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA=="
-  "resolved" "https://registry.npmjs.org/vue-axios/-/vue-axios-3.4.1.tgz"
-  "version" "3.4.1"
-
 "vue-clickaway@2.2.2":
   "integrity" "sha512-25SpjXKetL06GLYoLoC8pqAV6Cur9cQ//2g35GRFBV4FgoljbZZjTINR8g2NuVXXDMLSUXaKx5dutgO4PaDE7A=="
   "resolved" "https://registry.npmjs.org/vue-clickaway/-/vue-clickaway-2.2.2.tgz"
@@ -6778,7 +6768,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.0", "vue@^2.6.12", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.2", "vue@2.6.14":
+"vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.0", "vue@^2.6.12", "vue@2.6.14":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
@@ -6796,12 +6786,10 @@
   "resolved" "https://registry.npmjs.org/vue2-transitions/-/vue2-transitions-0.3.0.tgz"
   "version" "0.3.0"
 
-"vuex@^4.0.2":
-  "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="
-  "resolved" "https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz"
-  "version" "4.0.2"
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.11"
+"vuex@^3.6.0":
+  "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
+  "resolved" "https://registry.npmjs.org/vuex/-/vuex-3.6.2.tgz"
+  "version" "3.6.2"
 
 "watchpack@^2.3.1":
   "integrity" "sha512-x0t0JuydIo8qCNctdDrn1OzH/qDzk2+rdCOC3YzumZ42fiMqmQ7T3xQurykYMhYfHaPHTp4ZxAx2NfUo1K6QaA=="
