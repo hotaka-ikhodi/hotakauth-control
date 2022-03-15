@@ -107,8 +107,8 @@
     },
     methods: {
       addChild (item) {
-        const index = this.$slots.default().indexOf(item.$vnode)
-        this.children.splice(index, 0, item)
+        /* const index = this.$slots.default().indexOf(item.$vnode)
+        this.children.splice(index, 0, item) */
       },
       removeChild (item) {
         const tabs = this.children
