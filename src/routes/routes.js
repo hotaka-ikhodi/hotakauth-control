@@ -6,8 +6,8 @@ import Overview from 'src/pages/Dashboard/Dashboard/Overview.vue'
 import Stats from 'src/pages/Dashboard/Dashboard/Stats.vue'
 
 // Usuarios page
-import ListaUsuarios from 'src/pages/Views/ListaUsuarios.vue'
-import NuevoUsuario from 'src/pages/Views/NuevoUsuario.vue'
+import ListaUsuarios from 'src/pages/Views/Usuarios/ListaUsuarios.vue'
+import NuevoUsuario from 'src/pages/Views/Usuarios/NuevoUsuario.vue'
 
 // Tokens Page
 import ListaTokens from 'src/pages/Views/Tokens/ListadoTokens.vue'

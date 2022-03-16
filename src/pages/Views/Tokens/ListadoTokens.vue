@@ -8,15 +8,6 @@
           </li>
         </ol>
       </nav>
-      <div class="col-2">
-        <button
-          type="button"
-          class="btn btn-outline-primary ms-3"
-          @click="generarToken"
-        >
-          Generar token
-        </button>
-      </div>
     </div>
 
     <div class="row ps-3 pe-3 pt-2">
@@ -79,8 +70,6 @@ export default {
         const val = row[column.property];
         return "redClass";
       }
-    },
-    generarToken() {
     },
     verToken(token) {
       console.log(token);

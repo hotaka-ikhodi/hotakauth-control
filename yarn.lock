@@ -3208,7 +3208,7 @@
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.76.tgz"
   "version" "1.4.76"
 
-"element-ui@2.15.6":
+"element-ui@^2.15.6":
   "integrity" "sha512-rcYXEKd/j2G0AgficAOk1Zd1AsnHRkhmrK4yLHmNOiimU2JfsywgfKUjMoFuT6pQx0luhovj8lFjpE4Fnt58Iw=="
   "resolved" "https://registry.npmjs.org/element-ui/-/element-ui-2.15.6.tgz"
   "version" "2.15.6"
