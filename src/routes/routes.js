@@ -9,6 +9,9 @@ import Stats from 'src/pages/Dashboard/Dashboard/Stats.vue'
 import ListaUsuarios from 'src/pages/Views/ListaUsuarios.vue'
 import NuevoUsuario from 'src/pages/Views/NuevoUsuario.vue'
 
+// Tokens Page
+import ListaTokens from 'src/pages/Views/Tokens/ListadoTokens.vue'
+
 
 // Pages
 import User from 'src/pages/Dashboard/Pages/UserProfile.vue'
@@ -102,6 +105,18 @@ let usuarios = {
       path: 'nuevousuario',
       name: 'NuevoUsuario',
       component: NuevoUsuario,
+      props: true,
+    },
+  ]
+}
+let tokens = {
+  path: '/tokens',
+  component: DashboardLayout,
+  redirect: '/tokens/listado',
+  children: [{
+      path: 'listado',
+      name: 'ListadoTokens',
+      component: ListaTokens,
       props: true,
     },
   ]
@@ -217,6 +232,7 @@ const routes = [{
     redirect: '/login'
   },
   usuarios,
+  tokens,
   componentsMenu,
   formsMenu,
   tablesMenu,
