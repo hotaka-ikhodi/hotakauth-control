@@ -18,6 +18,16 @@
         </button>
       </div>
     </div>
+    <div class="row mt-2 mb-2">
+      <div class="col"></div>
+      <el-input
+        v-model="busqueda"
+        class="col-2"
+        placeholder="Buscar..."
+        @input="buscarUsuario"
+      />
+    </div>
+
     <div class="row ps-3 pe-3 pt-2">
       <el-table :data="tabledata" class="col" height="543">
         <el-table-column prop="nombres" label="Usuario" />
@@ -44,19 +54,21 @@
 export default {
   data() {
     return {
+      allUsuarios: [],
+      loading: true,
       tabledata: [
         {
           nombres: "Juan Ramon",
           password: "123456",
           ownerdId: "Google",
-          externalProvider: 'LDAP',
+          externalProvider: "LDAP",
           externalId: "12345678",
           active: true,
         },
         {
           nombres: "Juan Ramon",
           password: "123456",
-          externalProvider: 'LDAP',
+          externalProvider: "LDAP",
           ownerdId: "Google",
           externalId: "12345678",
           active: true,
@@ -64,7 +76,7 @@ export default {
         {
           nombres: "Juan Ramon",
           password: "123456",
-          externalProvider: 'LDAP',
+          externalProvider: "LDAP",
           ownerdId: "Google",
           externalId: "12345678",
           active: true,
@@ -72,7 +84,24 @@ export default {
       ],
     };
   },
+  mounted() {
+    /* this.getUsuarios(); */
+  },
+  computed: {
+    usuarios() {
+      return this.$store.state.usuario.list.status;
+    },
+  },
   methods: {
+    buscarUsuario(val) {
+      if (val !== "") {
+        this.$store.dispatch("usuario/getUsuarios", {
+          filters: { nombre: val },
+        });
+      } else {
+        this.getUsuarios();
+      }
+    },
     nuevoUsuario() {
       this.$router.push({ name: "NuevoUsuario", params: { edit: "false" } });
     },
@@ -81,6 +110,20 @@ export default {
         name: "NuevoUsuario",
         params: { edit: "true", usuarioSelected: usuario },
       });
+    },
+    getUsuarios() {
+      this.$store.dispatch("usuario/getUsuarios");
+      this.loading = true;
+    },
+  },
+  watch: {
+    usuarios() {
+      if (this.usuarios.loaded) {
+        if (this.$store.state.usuarios.list.data) {
+          this.allUsuarios = this.$store.state.usuarios.list.data.items;
+          this.loading = false;
+        }
+      }
     },
   },
 };

@@ -28,7 +28,7 @@
         <button
           type="button"
           class="btn btn-outline-primary ms-3"
-          @click="saveNuevoUsuario"
+          @click="saveNuevoUsuario('general')"
         >
           Guardar
         </button>
@@ -75,9 +75,9 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="ExternalProvider" prop="externalProvider">
-        <el-select size="mini" v-model="externalProvider" placeholder="Select">
+        <el-select size="mini" v-model="general.externalProvider" placeholder="Select">
           <el-option
-            v-for="item in externalProvider"
+            v-for="item in listProvider"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -109,7 +109,7 @@ export default {
         ExternalId: "",
         externalProvider: "",
       },
-      externalProvider: [
+      listProvider: [
         {
           value: "Google",
           label: "Google",
@@ -129,14 +129,36 @@ export default {
     this.valueEdit = this.edit;
     if (this.valueEdit === "true") {
       this.general = this.usuarioSelected;
-      console.log(this.general);
     }
   },
-  methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
+  computed: {
+    newUsuario() {
+      return this.$store.state.usuario.new.status;
     },
-    saveNuevoUsuario() {},
+  },
+  methods: {
+    saveNuevoUsuario() {
+      this.$store.dispatch("usuario/newUsuario", this.general);
+    },
+  },
+  watch: {
+    newUsuario() {
+      if (this.newUsuario.created) {
+        if (this.$store.state.cliente.new.data) {
+          this.$notify({
+            title: "Creado",
+            message: "Ha sido creado Exitosamente",
+            type: "success",
+          });
+          this.$router.push("/usuarios/listado");
+        }
+      } else if (this.newUsuario.error) {
+        this.$notify.error({
+          title: "Error",
+          message: "Ha ocurrido un error al crear el usuario",
+        });
+      }
+    },
   },
 };
 </script>
