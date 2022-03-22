@@ -1,11 +1,15 @@
-import { apiServer } from '../globalVars';
+import {
+  apiServer
+} from '../globalVars';
 
 const axios = require('axios').default;
 
 function createAxios() {
   // return authorization header with jwt token
   const user = JSON.parse(localStorage.getItem('user'));
-  const headers = {};
+  const headers = {
+    "Access-Control-Allow-Origin": "*"
+  };
 
   if (user && user.token) {
     headers.authorization = user.token;

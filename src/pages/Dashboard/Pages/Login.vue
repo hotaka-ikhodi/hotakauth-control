@@ -107,13 +107,13 @@ export default {
       };
       this.$store.dispatch("user/login", model);
     },
-    notificacionError(msg) {
-      this.$notify({
-        title: "Error",
-        message: msg,
-        type: "error",
-      });
-    },
+    notificacion(titulo, mensaje, tipo) {
+        this.$notify({
+          title: titulo,
+          message: mensaje,
+          type: tipo
+        });
+      },
     toggleNavbar() {
       document.body.classList.toggle("nav-open");
     },
@@ -125,9 +125,10 @@ export default {
   watch: {
     user() {
       if (this.user.logged) {
-        const user = JSON.parse(localStorage.getItem("user"));
+        JSON.parse(localStorage.getItem("user"));
+        this.$router.push("/admin");
       } else if (this.user.error) {
-        this.notificacionError("Error en el usuario o contraseña");
+        this.notificacion("Error", "Error en el usuario o contraseña", "error");
       }
     },
   },
