@@ -68,7 +68,7 @@
               align-items-center
             "
           >
-            <nav>
+            <!-- <nav>
               <ul>
                 <li>
                   <router-link to="/">Home</router-link>
@@ -83,8 +83,8 @@
                   <router-link to="/">Blog</router-link>
                 </li>
               </ul>
-            </nav>
-            <div class="copyright">
+            </nav> -->
+            <!-- <div class="copyright">
               &copy; Coded with
               <i class="fa fa-heart heart"></i> by
               <a
@@ -93,7 +93,7 @@
                 rel="noopener"
                 >Creative Tim</a
               >.
-            </div>
+            </div> -->
           </div>
         </footer>
 

@@ -8,17 +8,18 @@
             <fade-render-transition>
               <card>
                 <div slot="header">
-                  <h3 class="card-title text-center">Login</h3>
+                  <h3 class="card-title text-center">Iniciar Sesiòn</h3>
                 </div>
                 <div>
                   <ValidationProvider
                     name="email"
+                    rules="required"
                     v-slot="{ passed, failed }"
                   >
                     <fg-input
-                      :error="failed ? 'The Email field is required' : null"
+                      :error="failed ? 'EL usuario es requerido' : null"
                       :hasSuccess="passed"
-                      label="Email address"
+                      label="Usuario"
                       name="email"
                       v-model="email"
                     >
@@ -31,31 +32,26 @@
                   >
                     <fg-input
                       type="password"
-                      :error="failed ? 'The Password field is required' : null"
+                      :error="failed ? 'Contraseña requerida' : null"
                       :hasSuccess="passed"
                       name="password"
-                      label="Password"
+                      label="Contraseña"
                       v-model="password"
                     >
                     </fg-input>
                   </ValidationProvider>
-                  <fg-input>
-                    <l-checkbox v-model="subscribe">
-                      Subscribe to newsletter
-                    </l-checkbox>
-                  </fg-input>
                 </div>
                 <div class="text-center">
                   <button
                     type="submit"
                     class="btn btn-fill btn-info btn-round btn-wd"
                   >
-                    Login
+                    Iniciar Sesiòn
                   </button>
                   <br />
                   <div class="forgot">
                     <router-link to="/register" class="card-category">
-                      Forgot your password?
+                      Olvidaste tu contraseña?
                     </router-link>
                   </div>
                 </div>
@@ -82,7 +78,6 @@ extend("min", min);
 
 export default {
   components: {
-    LCheckbox,
     FadeRenderTransition,
     AuthLayout,
   },
@@ -90,7 +85,6 @@ export default {
     return {
       email: "",
       password: "",
-      subscribe: true,
     };
   },
   mounted() {},
