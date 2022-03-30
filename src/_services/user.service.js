@@ -1,7 +1,7 @@
 import createAxios from './axiosHttp';
 
 export const userService = {
-  login,
+  login, changePassword
 };
 
 function login(user, password) {
@@ -12,5 +12,10 @@ function login(user, password) {
     }
     return user;
   });
+}
+function changePassword(body) {
+  const axios = createAxios();
+  const urlPath = '/auth/password';
+  return axios.put(urlPath, body);
 }
 

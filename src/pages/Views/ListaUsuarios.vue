@@ -40,20 +40,30 @@
         <el-table-column fixed="right" label="Acciones" width="90">
           <template #default="scope">
             <i
-              class="el-icon-view hand m-l"
-              @click="empleadoDetalle(scope.row)"
+              class="el-icon-key hand m-l"
+              @click="editPassword(scope.row)"
             ></i>
             <i class="el-icon-edit hand" @click="usuarioDetalle(scope.row)"></i>
           </template>
         </el-table-column>
       </el-table>
     </div>
+    <edit-password
+    v-if="showModalEdit"
+    :userItemProp="user"
+    @hide="hideModal"
+  />
   </div>
 </template>
 <script>
+import EditPassword from './EditPassword.vue';
+
 export default {
+  components: { EditPassword },
   data() {
     return {
+      user: null,
+      showModalEdit: false,
       busqueda: '',
       allUsuarios: [],
       loading: true,
@@ -68,6 +78,9 @@ export default {
     },
   },
   methods: {
+    hideModal() {
+      this.showModalEdit = false;
+    },
     buscarUsuario(val) {
       if (val !== "") {
         this.$store.dispatch("usuario/getAllUsuarios", {
@@ -81,11 +94,14 @@ export default {
       this.$router.push({ name: "NuevoUsuario", params: { edit: "false" } });
     },
     usuarioDetalle(usuario) {
-      console.log(usuario);
       this.$router.push({
         name: "NuevoUsuario",
         params: { edit: "true", usuarioSelected: usuario },
       });
+    },
+    editPassword(usuario) {
+      this.user = usuario;
+      this.showModalEdit = true;
     },
     getUsuarios() {
       this.$store.dispatch("usuario/getAllUsuarios");
@@ -98,7 +114,6 @@ export default {
         if (this.$store.state.usuario.list.data) {
           this.allUsuarios = this.$store.state.usuario.list.data;
           this.loading = false;
-          console.log(this.allUsuarios);
         }
       }
     },

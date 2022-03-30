@@ -1,7 +1,7 @@
 <template>
   <div class="user">
     <div class="photo">
-      <img src="static/img/default-avatar.png" alt="avatar"/>
+      <img src="static/img/user.png" alt="avatar"/>
     </div>
     <div class="info">
       <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#">
@@ -17,7 +17,7 @@
             <slot>
               <li>
                 <a class="profile-dropdown" href="#pablo">
-                  <span class="sidebar-mini">MP</span>
+                  <i class="nc-icon nc-button-power mb-2"></i>
                   <span class="sidebar-normal">Cerrar Sesiòn</span>
                 </a>
               </li>
