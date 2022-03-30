@@ -37,7 +37,7 @@ export const user = {
   actions: {
     login({ commit }, req) {
       commit('loginUserRequest');
-      userService.login(req.email, req.password)
+      userService.login(req.user, req.password)
         .then((res) => { commit('loginUserSuccess', res); })
         .catch((error) => { commit('loginUserError', error); });
     },

@@ -29,12 +29,12 @@
     </div>
 
     <div class="row ps-3 pe-3 pt-2">
-      <el-table :data="tabledata" class="col" height="543">
-        <el-table-column prop="nombres" label="Usuario" />
-        <el-table-column prop="externalId" label="ExternalId" />
-        <el-table-column prop="externalId" label="Active">
+      <el-table :data="allUsuarios" class="col" height="543">
+        <el-table-column prop="name" label="Usuario" />
+        <el-table-column prop="ownerid" label="External Provider" />
+        <el-table-column prop="active" label="Active">
           <template #default="scope">
-            <i class="el-icon-check" @click="empleadoDetalle(scope.row)"></i>
+            <i class="el-icon-check" v-if="scope.row.active" @click="empleadoDetalle(scope.row)"></i>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="Acciones" width="90">
@@ -54,38 +54,13 @@
 export default {
   data() {
     return {
+      busqueda: '',
       allUsuarios: [],
       loading: true,
-      tabledata: [
-        {
-          nombres: "Juan Ramon",
-          password: "123456",
-          ownerdId: "Google",
-          externalProvider: "LDAP",
-          externalId: "12345678",
-          active: true,
-        },
-        {
-          nombres: "Juan Ramon",
-          password: "123456",
-          externalProvider: "LDAP",
-          ownerdId: "Google",
-          externalId: "12345678",
-          active: true,
-        },
-        {
-          nombres: "Juan Ramon",
-          password: "123456",
-          externalProvider: "LDAP",
-          ownerdId: "Google",
-          externalId: "12345678",
-          active: true,
-        },
-      ],
     };
   },
   mounted() {
-    /* this.getUsuarios(); */
+    this.getUsuarios();
   },
   computed: {
     usuarios() {
@@ -95,8 +70,8 @@ export default {
   methods: {
     buscarUsuario(val) {
       if (val !== "") {
-        this.$store.dispatch("usuario/getUsuarios", {
-          filters: { nombre: val },
+        this.$store.dispatch("usuario/getAllUsuarios", {
+           name: val
         });
       } else {
         this.getUsuarios();
@@ -106,22 +81,24 @@ export default {
       this.$router.push({ name: "NuevoUsuario", params: { edit: "false" } });
     },
     usuarioDetalle(usuario) {
+      console.log(usuario);
       this.$router.push({
         name: "NuevoUsuario",
         params: { edit: "true", usuarioSelected: usuario },
       });
     },
     getUsuarios() {
-      this.$store.dispatch("usuario/getUsuarios");
+      this.$store.dispatch("usuario/getAllUsuarios");
       this.loading = true;
     },
   },
   watch: {
     usuarios() {
       if (this.usuarios.loaded) {
-        if (this.$store.state.usuarios.list.data) {
-          this.allUsuarios = this.$store.state.usuarios.list.data.items;
+        if (this.$store.state.usuario.list.data) {
+          this.allUsuarios = this.$store.state.usuario.list.data;
           this.loading = false;
+          console.log(this.allUsuarios);
         }
       }
     },

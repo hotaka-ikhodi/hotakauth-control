@@ -23,7 +23,7 @@ export const usuario = {
       state.list.status = { loaded: true };
     },
     newUsuarioRequest(state) {
-      state.new.status = { editing: true };
+      state.new.status = { creating: true };
     },
     newUsuarioError(state, error) {
       state.new.data = {};
@@ -31,14 +31,14 @@ export const usuario = {
     },
     newUsuarioSuccess(state, usuario) {
       state.new.data = usuario;
-      state.new.status = { edited: true };
+      state.new.status = { created: true };
     },
   },
   actions: {
-    getAllUsuarios({ commit }, req) {
+    getAllUsuarios({ commit }, filters) {
       commit('getAllUsuariosRequest');
       usuarioService
-        .getAllUsuarios(req)
+        .getAllUsuarios(filters)
         .then((usuarios) => {
           commit('getAllUsuariosSuccess', usuarios);
         })

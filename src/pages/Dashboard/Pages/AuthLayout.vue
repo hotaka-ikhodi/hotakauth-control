@@ -4,7 +4,6 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
         <div class="container">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Vue LBD Pro</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -26,12 +25,12 @@
               v-show="showMenu"
             >
               <ul class="navbar-nav">
-                <router-link to="/admin" class="nav-item">
+                <!-- <router-link to="/admin" class="nav-item">
                   <a class="nav-link">
                     <i class="nc-icon nc-chart-pie-35"></i> Dashboard
                   </a>
-                </router-link>
-                <router-link to="/register" class="nav-item">
+                </router-link> -->
+                <!-- <router-link to="/register" class="nav-item">
                   <a class="nav-link">
                     <i class="nc-icon nc-badge"></i> Register
                   </a>
@@ -45,7 +44,7 @@
                   <a class="nav-link">
                     <i class="nc-icon nc-key-25"></i> Lock
                   </a>
-                </router-link>
+                </router-link> -->
               </ul>
             </div>
           </el-collapse-transition>
@@ -69,7 +68,7 @@
               align-items-center
             "
           >
-            <nav>
+            <!-- <nav>
               <ul>
                 <li>
                   <router-link to="/">Home</router-link>
@@ -84,8 +83,8 @@
                   <router-link to="/">Blog</router-link>
                 </li>
               </ul>
-            </nav>
-            <div class="copyright">
+            </nav> -->
+            <!-- <div class="copyright">
               &copy; Coded with
               <i class="fa fa-heart heart"></i> by
               <a
@@ -94,7 +93,7 @@
                 rel="noopener"
                 >Creative Tim</a
               >.
-            </div>
+            </div> -->
           </div>
         </footer>
 

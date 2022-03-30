@@ -44,12 +44,13 @@
       <el-form-item label="Nombres" prop="nombres">
         <el-input
           placeholder="Nombres..."
-          v-model="general.nombres"
+          v-model="general.name"
           size="mini"
           autocomplete="off"
         ></el-input>
       </el-form-item>
-      <el-form-item label="Contraseña" prop="pass">
+      <el-form-item label="Contraseña" prop="pass"
+      v-if="general.externalprovider === 'Ninguno'">
         <el-input
           placeholder="Contraseña..."
           size="mini"
@@ -58,11 +59,11 @@
           autocomplete="off"
         ></el-input>
       </el-form-item>
-      <el-form-item label="OwnerdId" prop="ownerdid">
+      <el-form-item label="OwnerdId" prop="ownerid">
         <el-input
           placeholder="OwnerdId..."
           size="mini"
-          v-model="general.ownerdId"
+          v-model="general.ownerid"
           autocomplete="off"
         ></el-input>
       </el-form-item>
@@ -70,12 +71,12 @@
         <el-input
           placeholder="ExternalId..."
           size="mini"
-          v-model="general.externalId"
+          v-model="general.externalid"
           autocomplete="off"
         ></el-input>
       </el-form-item>
-      <el-form-item label="ExternalProvider" prop="externalProvider">
-        <el-select size="mini" v-model="general.externalProvider" placeholder="Select">
+      <el-form-item label="ExternalProvider" prop="externalprovider">
+        <el-select size="mini" v-model="general.externalprovider" placeholder="Select">
           <el-option
             v-for="item in listProvider"
             :key="item.value"
@@ -103,11 +104,11 @@ export default {
     return {
       valueEdit: "",
       general: {
-        nombres: "",
+        name: "",
         password: "",
-        ownerdId: "",
-        ExternalId: "",
-        externalProvider: "",
+        ownerid: "",
+        externalid: "",
+        externalprovider: "",
       },
       listProvider: [
         {
@@ -121,6 +122,10 @@ export default {
         {
           value: "LDAP",
           label: "LDAP",
+        },
+        {
+          value: "Ninguno",
+          label: "Ninguno",
         },
       ],
     };
@@ -140,23 +145,23 @@ export default {
     saveNuevoUsuario() {
       this.$store.dispatch("usuario/newUsuario", this.general);
     },
+    notificacion(titulo, mensaje, tipo) {
+        this.$notify({
+          title: titulo,
+          message: mensaje,
+          type: tipo
+        });
+      },
   },
   watch: {
     newUsuario() {
       if (this.newUsuario.created) {
-        if (this.$store.state.cliente.new.data) {
-          this.$notify({
-            title: "Creado",
-            message: "Ha sido creado Exitosamente",
-            type: "success",
-          });
+        if (this.$store.state.usuario.new.data) {
+          this.notificacion("Creado", "Ha sido creado Exitosamente", "success");
           this.$router.push("/usuarios/listado");
         }
       } else if (this.newUsuario.error) {
-        this.$notify.error({
-          title: "Error",
-          message: "Ha ocurrido un error al crear el usuario",
-        });
+        this.notificacion("Error", "Ha ocurrido un error al crear el usuario", "error");
       }
     },
   },

@@ -1,4 +1,4 @@
-<template>
+/* <template>
   <div class="card">
     <div class="card-image" v-if="$slots.image">
       <slot name="image"></slot>
@@ -29,3 +29,4 @@
 </script>
 <style>
 </style>
+ */
