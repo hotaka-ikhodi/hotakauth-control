@@ -6,7 +6,7 @@
     <div class="info">
       <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#">
            <span>
-             {{title}}
+             {{user.user}}
              <b class="caret"></b>
           </span>
       </a>
@@ -18,19 +18,7 @@
               <li>
                 <a class="profile-dropdown" href="#pablo">
                   <span class="sidebar-mini">MP</span>
-                  <span class="sidebar-normal">My Profile</span>
-                </a>
-              </li>
-              <li>
-                <a class="profile-dropdown" href="#pablo">
-                  <span class="sidebar-mini">EP</span>
-                  <span class="sidebar-normal">Edit Profile</span>
-                </a>
-              </li>
-              <li>
-                <a class="profile-dropdown" href="#pablo">
-                  <span class="sidebar-mini">S</span>
-                  <span class="sidebar-normal">Settings</span>
+                  <span class="sidebar-normal">Cerrar Sesiòn</span>
                 </a>
               </li>
             </slot>
@@ -55,8 +43,12 @@
     },
     data () {
       return {
-        isClosed: true
+        isClosed: true,
+        user: null,
       }
+    },
+    mounted() {
+      this.user = JSON.parse(localStorage.getItem('user'));
     },
     methods: {
       toggleMenu () {

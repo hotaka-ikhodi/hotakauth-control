@@ -595,4 +595,9 @@ License - nucleoapp.com/license/
   content: "\ea64";
 }
 
+.hand{
+  cursor: pointer;
+  background: transparent;
+}
+
 /* all icon font classes list here */

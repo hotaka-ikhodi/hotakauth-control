@@ -7,6 +7,7 @@ import Stats from 'src/pages/Dashboard/Dashboard/Stats.vue'
 
 // Usuarios page
 import ListaUsuarios from 'src/pages/Views/ListaUsuarios.vue'
+import NuevoUsuario from 'src/pages/Views/NuevoUsuario.vue'
 
 
 // Pages
@@ -49,8 +50,7 @@ let componentsMenu = {
   path: '/components',
   component: DashboardLayout,
   redirect: '/components/buttons',
-  children: [
-    {
+  children: [{
       path: 'buttons',
       name: 'Buttons',
       component: Buttons
@@ -92,11 +92,17 @@ let usuarios = {
   path: '/usuarios',
   component: DashboardLayout,
   redirect: '/usuarios/listado',
-  children: [
-    {
+  children: [{
       path: 'listado',
       name: 'Listado Usuarios',
-      component: ListaUsuarios
+      component: ListaUsuarios,
+      props: true,
+    },
+    {
+      path: 'nuevousuario',
+      name: 'NuevoUsuario',
+      component: NuevoUsuario,
+      props: true,
     },
   ]
 }
@@ -104,8 +110,7 @@ let formsMenu = {
   path: '/forms',
   component: DashboardLayout,
   redirect: '/forms/regular',
-  children: [
-    {
+  children: [{
       path: 'regular',
       name: 'Regular Forms',
       component: RegularForms
@@ -132,8 +137,7 @@ let tablesMenu = {
   path: '/table-list',
   component: DashboardLayout,
   redirect: '/table-list/regular',
-  children: [
-    {
+  children: [{
       path: 'regular',
       name: 'Regular Tables',
       component: RegularTables
@@ -147,15 +151,15 @@ let tablesMenu = {
       path: 'paginated',
       name: 'Paginated Tables',
       component: PaginatedTables
-    }]
+    }
+  ]
 }
 
 let mapsMenu = {
   path: '/maps',
   component: DashboardLayout,
   redirect: '/maps/google',
-  children: [
-    {
+  children: [{
       path: 'google',
       name: 'Google Maps',
       component: GoogleMaps
@@ -177,8 +181,7 @@ let pagesMenu = {
   path: '/pages',
   component: DashboardLayout,
   redirect: '/pages/user',
-  children: [
-    {
+  children: [{
       path: 'user',
       name: 'User Page',
       component: User
@@ -209,8 +212,7 @@ let lockPage = {
   component: Lock
 }
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     redirect: '/login'
   },
@@ -227,8 +229,7 @@ const routes = [
     path: '/admin',
     component: DashboardLayout,
     redirect: '/admin/overview',
-    children: [
-      {
+    children: [{
         path: 'overview',
         name: 'Overview',
         component: Overview
@@ -250,7 +251,10 @@ const routes = [
       }
     ]
   },
-  {path: '*', component: NotFound}
+  {
+    path: '*',
+    component: NotFound
+  }
 ]
 
 export default routes

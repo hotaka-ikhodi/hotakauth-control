@@ -7,17 +7,13 @@ const axios = require('axios').default;
 function createAxios() {
   // return authorization header with jwt token
   const user = JSON.parse(localStorage.getItem('user'));
-  const headers = {
-    "Access-Control-Allow-Origin": "*"
-  };
-
+  const headers = {};
   if (user && user.token) {
-    headers.authorization = user.token;
+    headers.Authorization = `Bearer ${user.token}`;
   }
-
   const instance = axios.create({
     baseURL: apiServer,
-    headers,
+    headers
   });
 
   instance.interceptors.response.use((response) => Promise.resolve(response.data),
