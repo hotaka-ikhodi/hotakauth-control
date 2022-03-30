@@ -22,7 +22,7 @@
             </el-table-column>
             <el-table-column
               label="Actions">
-              <div class="td-actions" slot-scope="props">
+              <div class="td-actions" slot="props">
                 <a v-tooltip.top-center="'View Profile'" class="btn btn-info btn-link btn-xs" href="#"
                    @click="handleLike(props.$index, props.row)">
                   <i class="fa fa-user"></i>
@@ -64,7 +64,7 @@
             </el-table-column>
             <el-table-column
               label="Active">
-              <template slot-scope="props">
+              <template slot="props">
                 <l-switch v-model="props.row.active"></l-switch>
               </template>
             </el-table-column>
@@ -85,14 +85,14 @@
                       style="width: 100%"
                       :data="productsTable">
               <el-table-column min-width="220" label="THUMB">
-                <template slot-scope="{row}">
+                <template slot="{row}">
                   <div class="img-container">
                     <img :src="row.image" alt="Agenda">
                   </div>
                 </template>
               </el-table-column>
               <el-table-column min-width="220" label="BLOG TITLE">
-                <template slot-scope="{row}">
+                <template slot="{row}">
                   <p>{{row.title}}</p>
                 </template>
               </el-table-column>

@@ -2,11 +2,11 @@
   <table class="table">
     <thead>
       <slot name="columns">
-        <th v-for="column in columns" :key="column">{{column}}</th>
+        <th v-for="(column, key) in columns" :key="key">{{column}}</th>
       </slot>
     </thead>
     <tbody>
-    <tr v-for="item in data" :key="item">
+    <tr v-for="(item, key) in data" :key="key">
       <slot :row="item">
         <template v-for="column in columns">
           <td v-if="hasValue(item, column)" :key="column">{{itemValue(item, column)}}</td>

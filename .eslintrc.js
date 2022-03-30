@@ -17,5 +17,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,
+    'vue/no-deprecated-slot-attribute': 'off',
+    'vue/multi-word-component-names': 'off'
   },
 };

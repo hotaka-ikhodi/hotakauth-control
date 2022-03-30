@@ -27,7 +27,7 @@
     <slot name="title" v-if="children.length === 0 && !$slots.default && link.path">
       <component
         :to="link.path"
-        @click.native="linkClick"
+        @click.enter="linkClick"
         :is="elementType(link, false)"
         :class="{active: link.active}"
         class="nav-link"
@@ -107,8 +107,8 @@
     },
     methods: {
       addChild (item) {
-        const index = this.$slots.default.indexOf(item.$vnode)
-        this.children.splice(index, 0, item)
+        /* const index = this.$slots.default().indexOf(item.$vnode)
+        this.children.splice(index, 0, item) */
       },
       removeChild (item) {
         const tabs = this.children
@@ -149,7 +149,7 @@
         this.collapsed = false
       }
     },
-    destroyed () {
+    unmount () {
       if (this.$el && this.$el.parentNode) {
         this.$el.parentNode.removeChild(this.$el)
       }

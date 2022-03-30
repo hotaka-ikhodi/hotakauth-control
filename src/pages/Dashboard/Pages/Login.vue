@@ -8,20 +8,21 @@
             <fade-render-transition>
               <card>
                 <div slot="header">
-                  <h3 class="card-title text-center">Login</h3>
+                  <h3 class="card-title text-center">Iniciar Sesiòn</h3>
                 </div>
                 <div>
                   <ValidationProvider
                     name="email"
-                    rules="required|email"
+                    rules="required"
                     v-slot="{ passed, failed }"
                   >
-                    <fg-input  type="email"
-                               :error="failed ? 'The Email field is required': null"
-                               :hasSuccess="passed"
-                               label="Email address"
-                               name="email"
-                               v-model="email">
+                    <fg-input
+                      :error="failed ? 'EL usuario es requerido' : null"
+                      :hasSuccess="passed"
+                      label="Usuario"
+                      name="email"
+                      v-model="email"
+                    >
                     </fg-input>
                   </ValidationProvider>
                   <ValidationProvider
@@ -29,26 +30,28 @@
                     rules="required|min:5"
                     v-slot="{ passed, failed }"
                   >
-                    <fg-input  type="password"
-                               :error="failed ? 'The Password field is required': null"
-                               :hasSuccess="passed"
-                               name="password"
-                               label="Password"
-                               v-model="password">
+                    <fg-input
+                      type="password"
+                      :error="failed ? 'Contraseña requerida' : null"
+                      :hasSuccess="passed"
+                      name="password"
+                      label="Contraseña"
+                      v-model="password"
+                    >
                     </fg-input>
                   </ValidationProvider>
-                  <fg-input>
-                    <l-checkbox v-model="subscribe">
-                      Subscribe to newsletter
-                    </l-checkbox>
-                  </fg-input>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-fill btn-info btn-round btn-wd ">Login</button>
-                  <br>
+                  <button
+                    type="submit"
+                    class="btn btn-fill btn-info btn-round btn-wd"
+                  >
+                    Iniciar Sesiòn
+                  </button>
+                  <br />
                   <div class="forgot">
                     <router-link to="/register" class="card-category">
-                      Forgot your password?
+                      Olvidaste tu contraseña?
                     </router-link>
                   </div>
                 </div>
@@ -61,8 +64,11 @@
   </auth-layout>
 </template>
 <script>
-import { Checkbox as LCheckbox, FadeRenderTransition } from 'src/components/index'
-import AuthLayout from './AuthLayout.vue'
+import {
+  Checkbox as LCheckbox,
+  FadeRenderTransition,
+} from "src/components/index";
+import AuthLayout from "./AuthLayout.vue";
 import { extend } from "vee-validate";
 import { required, email, min } from "vee-validate/dist/rules";
 
@@ -70,39 +76,64 @@ extend("email", email);
 extend("required", required);
 extend("min", min);
 
-  export default {
-    components: {
-      LCheckbox,
-      FadeRenderTransition,
-      AuthLayout
+export default {
+  components: {
+    FadeRenderTransition,
+    AuthLayout,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  mounted() {},
+  computed: {
+    user() {
+      return this.$store.state.user.entity.status;
     },
-    data() {
-      return {
-        email: "",
-        password: "",
-        subscribe: true
+  },
+  methods: {
+    submit() {
+      const model = {
+        user: this.email,
+        password: this.password,
       };
+      this.$store.dispatch("user/login", model);
     },
-    methods: {
-      submit() {
-        alert("Form has been submitted!");
+    notificacion(titulo, mensaje, tipo) {
+        this.$notify({
+          title: titulo,
+          message: mensaje,
+          type: tipo
+        });
       },
-      toggleNavbar () {
-        document.body.classList.toggle('nav-open')
-      },
-      closeMenu () {
-        document.body.classList.remove('nav-open')
-        document.body.classList.remove('off-canvas-sidebar')
+    toggleNavbar() {
+      document.body.classList.toggle("nav-open");
+    },
+    closeMenu() {
+      document.body.classList.remove("nav-open");
+      document.body.classList.remove("off-canvas-sidebar");
+    },
+  },
+  watch: {
+    user() {
+      if (this.user.logged) {
+        JSON.parse(localStorage.getItem("user"));
+        this.$router.push("/admin");
+      } else if (this.user.error) {
+        this.notificacion("Error", "Error en el usuario o contraseña", "error");
       }
     },
-    beforeDestroy () {
-      this.closeMenu()
-    }
-  }
+  },
+  beforeUnmount() {
+    this.closeMenu();
+  },
+};
 </script>
 <style>
-  .navbar-nav .nav-item p{
-    line-height: inherit;
-    margin-left: 5px;
-  }
+.navbar-nav .nav-item p {
+  line-height: inherit;
+  margin-left: 5px;
+}
 </style>
