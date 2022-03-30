@@ -19,7 +19,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es'
 import VueRouter from 'vue-router'
 import LightBootstrap from './light-bootstrap-main'
+import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 import { store } from './_store/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 // Plugins
 import App from './App.vue'
 
@@ -30,6 +33,8 @@ import routes from './routes/routes'
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
 Vue.use(ElementUI,{ locale })
+Vue.use(BootstrapIconsPlugin);
+
 
 
 // configure router
