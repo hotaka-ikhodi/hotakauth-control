@@ -16,9 +16,9 @@
           <ul class="nav" v-show="!isClosed">
             <slot>
               <li>
-                <a class="profile-dropdown" href="#pablo">
+                <a class="profile-dropdown">
                   <i class="nc-icon nc-button-power mb-2"></i>
-                  <span class="sidebar-normal">Cerrar Sesiòn</span>
+                  <span class="sidebar-normal" @click="cerrarSesion">Cerrar Sesiòn</span>
                 </a>
               </li>
             </slot>
@@ -51,6 +51,10 @@
       this.user = JSON.parse(localStorage.getItem('user'));
     },
     methods: {
+      cerrarSesion() {
+      localStorage.removeItem('user');
+      this.$router.push({ name: 'Login' });
+    },
       toggleMenu () {
         this.isClosed = !this.isClosed
       }
