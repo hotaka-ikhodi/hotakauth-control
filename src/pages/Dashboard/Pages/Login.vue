@@ -46,7 +46,7 @@
                     type="submit"
                     class="btn btn-fill btn-info btn-round btn-wd"
                   >
-                    Iniciar Sesiòn
+                    Iniciar Sesión
                   </button>
                   <br />
                   <div class="forgot">

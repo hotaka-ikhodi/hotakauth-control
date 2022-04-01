@@ -40,6 +40,7 @@
       ref="general"
       label-width="120px"
       class="demo-ruleForm"
+      :rules="rules"
     >
       <el-form-item label="Nombres" prop="nombres">
         <el-input
@@ -49,8 +50,11 @@
           autocomplete="off"
         ></el-input>
       </el-form-item>
-      <el-form-item label="Contraseña" prop="pass"
-      v-if="general.externalprovider === 'Ninguno'">
+      <el-form-item
+        label="Contraseña"
+        prop="pass"
+        v-if="general.externalprovider === 'Ninguno'"
+      >
         <el-input
           placeholder="Contraseña..."
           size="mini"
@@ -76,7 +80,11 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="ExternalProvider" prop="externalprovider">
-        <el-select size="mini" v-model="general.externalprovider" placeholder="Select">
+        <el-select
+          size="mini"
+          v-model="general.externalprovider"
+          placeholder="Select"
+        >
           <el-option
             v-for="item in listProvider"
             :key="item.value"
@@ -128,6 +136,17 @@ export default {
           label: "Ninguno",
         },
       ],
+      rules: {
+        name: [
+          { required: true, message: "Nombre requerido", trigger: "blur" },
+        ],
+        ownerid: [
+          { required: true, message: "OwnerId requerido", trigger: "blur" },
+        ],
+        externalid: [
+          { required: true, message: "ExternalId requerido", trigger: "blur" },
+        ],
+      },
     };
   },
   mounted() {
@@ -142,16 +161,20 @@ export default {
     },
   },
   methods: {
-    saveNuevoUsuario() {
-      this.$store.dispatch("usuario/newUsuario", this.general);
+    saveNuevoUsuario(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$store.dispatch("usuario/newUsuario", this.general);
+        }
+      });
     },
     notificacion(titulo, mensaje, tipo) {
-        this.$notify({
-          title: titulo,
-          message: mensaje,
-          type: tipo
-        });
-      },
+      this.$notify({
+        title: titulo,
+        message: mensaje,
+        type: tipo,
+      });
+    },
   },
   watch: {
     newUsuario() {
@@ -161,7 +184,11 @@ export default {
           this.$router.push("/usuarios/listado");
         }
       } else if (this.newUsuario.error) {
-        this.notificacion("Error", "Ha ocurrido un error al crear el usuario", "error");
+        this.notificacion(
+          "Error",
+          "Ha ocurrido un error al crear el usuario",
+          "error"
+        );
       }
     },
   },

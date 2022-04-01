@@ -31,7 +31,7 @@
     <div class="row ps-3 pe-3 pt-2">
       <el-table :data="allUsuarios" class="col" height="543">
         <el-table-column prop="name" label="Usuario" />
-        <el-table-column prop="ownerid" label="External Provider" />
+        <el-table-column prop="ownerid" label="OwnerId" />
         <el-table-column prop="active" label="Active">
           <template #default="scope">
             <i class="el-icon-check" v-if="scope.row.active" @click="empleadoDetalle(scope.row)"></i>
