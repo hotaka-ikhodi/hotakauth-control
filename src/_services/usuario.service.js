@@ -15,7 +15,14 @@ function getAllUsuarios(filters) {
   return axios.get(urlPath);
 }
 
+function updateStatusUser(usuario) {
+  const axios = createAxios();
+  const urlPath = `/user/${usuario.iduser}`;
+  return axios.put(urlPath, usuario);
+}
+
 export const usuarioService = {
   newUsuario,
   getAllUsuarios,
+  updateStatusUser,
 };

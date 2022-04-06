@@ -31,10 +31,14 @@
     <div class="row ps-3 pe-3 pt-2">
       <el-table :data="allUsuarios" class="col" height="543">
         <el-table-column prop="name" label="Usuario" />
-        <el-table-column prop="ownerid" label="External Provider" />
+        <el-table-column prop="ownerid" label="OwnerId" />
         <el-table-column prop="active" label="Active">
           <template #default="scope">
-            <i class="el-icon-check" v-if="scope.row.active" @click="empleadoDetalle(scope.row)"></i>
+            <i
+              class="el-icon-check"
+              v-if="scope.row.active"
+              @click="empleadoDetalle(scope.row)"
+            ></i>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="Acciones" width="90">
@@ -46,25 +50,40 @@
             <i class="el-icon-edit hand" @click="usuarioDetalle(scope.row)"></i>
           </template>
         </el-table-column>
+        <el-table-column prop="active" fixed="right" width="90">
+          <template #default="scope"
+            >
+            <div @click="desactivarUsuario(scope.row)">
+              <el-switch v-model="scope.row.active" />
+            </div>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <edit-password
-    v-if="showModalEdit"
-    :userItemProp="user"
-    @hide="hideModal"
-  />
+      v-if="showModalEdit"
+      :userItemProp="user"
+      @hide="hideModal"
+    />
+    <usuario-active
+      v-if="activarUsuario"
+      :usuarioProp="user"
+      @hide="hideModal"
+    />
   </div>
 </template>
 <script>
-import EditPassword from './EditPassword.vue';
+import EditPassword from "./EditPassword.vue";
+import UsuarioActive from "./UsuarioActive.vue";
 
 export default {
-  components: { EditPassword },
+  components: { EditPassword, UsuarioActive },
   data() {
     return {
+      activarUsuario: false,
       user: null,
       showModalEdit: false,
-      busqueda: '',
+      busqueda: "",
       allUsuarios: [],
       loading: true,
     };
@@ -80,11 +99,16 @@ export default {
   methods: {
     hideModal() {
       this.showModalEdit = false;
+      this.activarUsuario = false;
+    },
+    desactivarUsuario(usuario) {
+      this.user = usuario;
+      this.activarUsuario = true;
     },
     buscarUsuario(val) {
       if (val !== "") {
         this.$store.dispatch("usuario/getAllUsuarios", {
-           name: val
+          name: val,
         });
       } else {
         this.getUsuarios();

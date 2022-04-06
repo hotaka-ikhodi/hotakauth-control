@@ -9,6 +9,7 @@ export const usuario = {
       },
     },
     new: { data: {}, status: {} },
+    editStatus: { data: {}, status: {} },
   },
   mutations: {
     getAllUsuariosRequest(state) {
@@ -33,6 +34,23 @@ export const usuario = {
       state.new.data = usuario;
       state.new.status = { created: true };
     },
+    editStatusUserRequest(state) {
+      state.editStatus.status = {
+        editing: true,
+      };
+    },
+    editStatusUserError(state, error) {
+      state.editStatus.data = null;
+      state.editStatus.status = {
+        error,
+      };
+    },
+    editStatusUserSuccess(state, statusEditado) {
+      state.editStatus.data = statusEditado;
+      state.editStatus.status = {
+        edited: true,
+      };
+    },
   },
   actions: {
     getAllUsuarios({ commit }, filters) {
@@ -54,6 +72,17 @@ export const usuario = {
         })
         .catch((error) => {
           commit('newUsuarioError', error);
+        });
+    },
+    updateStatusUser({ commit }, userRequest) {
+      commit('editStatusUserRequest');
+      // eslint-disable-next-line no-underscore-dangle
+      usuarioService.updateStatusUser(userRequest)
+        .then((userRes) => {
+          commit('editStatusUserSuccess', userRes);
+        })
+        .catch((error) => {
+          commit('editStatusUserError', error);
         });
     },
   },
